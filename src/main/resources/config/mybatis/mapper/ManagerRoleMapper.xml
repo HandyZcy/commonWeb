@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ManagerRoleMapper">
+
+	<sql id="manager_role"> sys_manager_role </sql>
+	
+	<!-- 插入 -->
+	<insert id="saveManagerRole" parameterType="pd" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO <include refid="manager_role"/>  (
+			manager_id,role_id,created_at 
+		) VALUES 
+		<foreach collection="roleIds" item="roleId" separator=",">
+			(#{managerId},#{roleId},NOW())
+		</foreach>
+	</insert>
+	
+	<!-- 清空指定用户的角色 -->
+	<delete id="clearRoleByManagerId" parameterType="int" flushCache="true">
+		DELETE FROM <include refid="manager_role"/> WHERE manager_id = #{managerId}
+	</delete>
+	
+	<!-- 查询拥有指定角色的用户数量 -->
+  	<select id="getManagerNumByRoleId" parameterType="int" resultType="int">
+  		SELECT COUNT(id) managerNum FROM <include refid="manager_role"/> WHERE role_id = #{roleId} 
+  	</select>
+  	
+</mapper>

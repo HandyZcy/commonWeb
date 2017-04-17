@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings> 
+	-->
+	
+	<typeAliases>
+		<typeAlias type="com.alibaba.fastjson.JSONObject" alias="jo"/>
+		<typeAlias type="com.system.bean.PageData" alias="pd"/>
+		<typeAlias type="com.system.bean.Page" alias="page"/>
+		
+		<typeAlias type="com.system.bean.Manager" alias="manager"/>
+		<typeAlias type="com.system.bean.Role" alias="role"/>
+		<typeAlias type="com.system.bean.Right" alias="right"/>
+		<typeAlias type="com.system.bean.RoleRight" alias="roleRight"/>
+		<typeAlias type="com.system.bean.ManagerRole" alias="managerRole"/>
+	</typeAliases>
+	
+	<plugins>
+		<plugin interceptor="com.system.plugin.PagePlugin">
+			<property name="dialect" value="mysql"/>
+			<property name="pageSqlId" value=".*[Ll]istPage.*"/>
+		</plugin>
+	</plugins>
+	
+</configuration>
