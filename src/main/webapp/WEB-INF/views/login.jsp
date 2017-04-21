@@ -57,6 +57,11 @@
 			if (event.keyCode == 13) {
 				$("#add-submit").trigger("submit");
 			}
+			var errMsg = "${error}";
+			if(errMsg != null && errMsg != "" && errMsg != undefined){
+				alert(errMsg);
+				return false;
+			}
 		})
 	</script>
 </body>

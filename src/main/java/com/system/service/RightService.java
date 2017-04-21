@@ -15,6 +15,15 @@ public interface RightService {
 
 	/**
 	 * 根据角色id获取其分配的权限
+	 * @param managerId 多个角色id使用英文逗号分割连接
+	 * @return   
+	 * @author Handy
+	 * @date 2016年5月27日上午11:44:40
+	 */
+	public List<Right> getRightByManagerId(Integer managerId);
+	
+	/**
+	 * 根据角色id获取其分配的权限
 	 * @param roleId 多个角色id使用英文逗号分割连接
 	 * @return   
 	 * @author Handy
@@ -56,5 +65,7 @@ public interface RightService {
 	 * @date 2016年5月30日下午2:46:24
 	 */
 	public Right getRightById(int rightId);
+	
+	
 
 }

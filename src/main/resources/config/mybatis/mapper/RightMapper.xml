@@ -2,17 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="RightMapper">
 
-	<cache  
+	<!-- <cache  
 	    type="com.system.cache.MybatisRedisCache"  
 		eviction="LRU"  
 		flushInterval="6000000"  
 		size="1024"  
 		readOnly="false"
-	/> 
+	/>  -->
 
 	<sql id="role">sys_role</sql>
 	<sql id="right">sys_right</sql>
 	<sql id="role_right">sys_role_right</sql>
+	<sql id="manager_role">sys_manager_role</sql>
 	
 	<sql id="base_column">
 		*
@@ -98,5 +99,15 @@
   		WHERE
   			id = #{rightId}
   	</select>
+
+	<!-- 根据用户id获取其拥有权限集合 -->
+	<select id="getRightListByManagerId" parameterType="int" resultType="right">
+		SELECT
+			DISTINCT c.id id, c.name name, c.description description
+		FROM
+			<include refid="manager_role"/> a, <include refid="role_right"/> b, <include refid="right"/> c
+		WHERE
+			a.manager_id = #{managerId} AND a.role_id = b.role_id AND b.right_id = c.id
+	</select>
 
 </mapper>

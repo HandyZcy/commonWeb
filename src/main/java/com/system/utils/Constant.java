@@ -2,7 +2,6 @@ package com.system.utils;
 
 /**
  * 项目名称：
- * @author: hp
  * 
 */
 public class Constant {
@@ -50,6 +49,8 @@ public class Constant {
 	 */
 	public static final int HASH_INTERATIONS = 1024;
 
-	public static final String SUPER_ADMIN_NAME = "superadmin";
+	public static final String SUPER_ADMIN_NAME = "superadmin@superadmin.com";
+	
+	public static final String MANAGER_SESSION_KEY = "sessionManager";
 
 }

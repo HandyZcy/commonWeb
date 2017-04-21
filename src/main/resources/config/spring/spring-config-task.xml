@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/task
 		http://www.springframework.org/schema/task/spring-task-4.2.xsd"
-	default-lazy-init="false">
+	>
 	 
 	<!-- 任务调度器 -->  
 	<task:scheduler id="scheduler" pool-size="10" />  

@@ -106,4 +106,9 @@ public class RightServiceImpl implements RightService {
 		return right;
 	}
 
+	@Override
+	public List<Right> getRightByManagerId(Integer managerId) {
+		return dao.findForList("RightMapper.getRightListByManagerId", managerId);
+	}
+
 }

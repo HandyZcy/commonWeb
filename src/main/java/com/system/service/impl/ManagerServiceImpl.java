@@ -15,6 +15,7 @@ import com.system.bean.Page;
 import com.system.bean.PageData;
 import com.system.dao.DAO;
 import com.system.service.ManagerService;
+import com.system.utils.Digests;
 
 @Service(value = "managerService")
 public class ManagerServiceImpl implements ManagerService {
@@ -91,7 +92,7 @@ public class ManagerServiceImpl implements ManagerService {
 					String dbPwd = dbManager.getPwd();
 					//处理密码修改加密问题
 					if (dbPwd != null && !dbPwd.equals(manager.getPwd())) {
-//						manager.setPwd(Digests.encryptPassword(manager.getPwd(), manager.getSalt()));
+						manager.setPwd(Digests.encryptPassword(manager.getPwd(), manager.getSalt()));
 					}
 				}
 				int rowNum = (int) dao.update("ManagerMapper.update", manager);
@@ -103,7 +104,7 @@ public class ManagerServiceImpl implements ManagerService {
 					result.put("message", "执行结果异常，请稍候重试");
 				}
 			} else {//增加
-//				manager.setPwd(Digests.encryptPassword(manager.getPwd(), manager.getSalt()));
+				manager.setPwd(Digests.encryptPassword(manager.getPwd(), manager.getSalt()));
 				int rowNum = (int) dao.save("ManagerMapper.insert", manager);
 				if (rowNum == 1) {
 					result.put("status", "1");

@@ -9,7 +9,7 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util.xsd"
-	default-lazy-init="true">
+	>
 
 	<description>Shiro安全配置</description>
 	
@@ -33,26 +33,25 @@
 				<!-- Pattern里用到的是两颗星，这样才能实现任意层次的全匹配 -->
 				/statics/** = anon 
 				/login.shtml = anon
-				/getCheckCode = anon
-				<!-- 表示用户必需已通过认证，并拥有 superman 角色 && superman:role:list 权限才可以正常发起'/roleController'请求-->
-				/roleController/** = authc,roles[superman],perms[superman:role:list]
-				/rightController/** = authc,roles[superman],perms[superman:right:list]
-				/managerController/preEditPwd = authc
-				/managerController/editUserBase = authc
-				<!-- 表示用户必需已通过认证,并拥有 superman 角色 && superman:manager:list 才可以正常发起'/managerController'请求 -->
-				/managerController/** = authc,roles[superman],perms[superman:manager:list]
-				/downloadController/qrcodeDownload = authc
+				<!-- 表示用户必需已通过认证，并拥有 superman 角色 && superman:role:list 权限才可以正常发起'/role'请求-->
+				/role/** = authc,roles[superman],perms[superman:role:list]
+				/right/** = authc,roles[superman],perms[superman:right:list]
+				/manager/preEditPwd = authc
+				/manager/editUserBase = authc
+				<!-- 表示用户必需已通过认证,并拥有 superman 角色 && superman:manager:list 才可以正常发起'/manager'请求 -->
+				/manager/** = authc,roles[superman],perms[superman:manager:list]
+				<!-- /downloadController/qrcodeDownload = authc -->
 			</value>
         </property>
 	</bean>
+	
+	<!--自定义Realm -->
+	<bean id="myRealm" class="com.system.shiro.MyRealm"/>
 	
 	<!-- 凭证匹配器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="myRealm" />
 	</bean>
-	
-	<!--自定义Realm -->
-	<bean id="myRealm" class="com.qtzk.system.shiro.MyRealm"/>
 	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
 	

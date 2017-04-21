@@ -63,9 +63,10 @@
 			a.mobile userMobile, a.email userEmail, a.created_at userCreatedAt, a.updated_at userUpdatedAt,
 			c.id roleId, c.name roleName, c.description roleDescription
 		FROM
-			<include refid="user"/> a, <include refid="manager_role"/> b, <include refid="role"/> c
+			<include refid="user"/> a 
+			LEFT JOIN <include refid="manager_role"/> b ON a.id = b.manager_id
+			LEFT JOIN <include refid="role"/> c ON b.role_id = c.id
 		<where>
-			 a.id = b.manager_id AND b.role_id = c.id
 			<if test="pd.nickname != null and pd.nickname != ''"> AND a.nickname LIKE CONCAT('%',#{pd.nickname},'%')</if>
 		</where>
 		ORDER BY c.id

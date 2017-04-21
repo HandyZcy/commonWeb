@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd"
-	default-lazy-init="false">
+	>
 	
 	<!-- 声明式事务管理 -->
 	<bean id="transactionManager"
