@@ -34,7 +34,7 @@
             <div class="middle-box text-center loginscreen  animated fadeInDown">
             <h3>欢迎使用后台管理系统</h3>
             
-            <form class="m-t" role="form" action="login" method="post">
+            <form class="m-t" role="form" action="<%=basePath%>login" method="post">
                 <div class="form-group">
                     <input type="email" name="nickname" class="form-control" placeholder="请输入用户名">
                 </div>

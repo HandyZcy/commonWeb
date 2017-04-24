@@ -12,12 +12,14 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource.Util;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSONObject;
@@ -52,9 +54,14 @@ public class MyRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		String loginName = SecurityUtils.getSubject().getPrincipal().toString();
+		Subject subject = SecurityUtils.getSubject();
+		String loginName = subject.getPrincipal().toString();
 		if (loginName != null) {
-			Manager currentUser = (Manager) SecurityUtils.getSubject().getSession().getAttribute(Constant.MANAGER_SESSION_KEY);
+			Manager currentUser = (Manager) subject.getSession().getAttribute(Constant.MANAGER_SESSION_KEY);
+			if (currentUser == null) {
+				subject.logout();
+				return null;
+			}
 			// 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
 			SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 			// 用户的角色集合
@@ -78,7 +85,8 @@ public class MyRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		String userName = (String) token.getPrincipal();
+		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
+		String userName =  usernamePasswordToken.getUsername();
 		JSONObject jsonObject = managerService.getManagerByNickname(userName);
 		Manager dbManager = jsonObject.getObject("data", Manager.class);
 		if(dbManager != null){
@@ -87,9 +95,8 @@ public class MyRealm extends AuthorizingRealm {
 			}
 			
 			SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userName, dbManager.getPwd(), getName());
-			
-			//设置加密密钥
-			authenticationInfo.setCredentialsSalt(Util.bytes(dbManager.getSalt()));
+			//设置加密盐值
+			authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(dbManager.getSalt()));
 			
 			// 当验证都通过后，把用户信息放在session里
 			Session session = SecurityUtils.getSubject().getSession();

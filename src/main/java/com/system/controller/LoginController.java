@@ -92,12 +92,6 @@ public class LoginController extends BaseController{
 		return "index";
 	}
 	
-	
-	@RequestMapping(value = "/permissionRefuse")
-	public String permissionRefuse() {
-		return "error/forbidden";
-	}
-	
 	/**
 	 * 获取当前用户的权限列表
 	 * @param request

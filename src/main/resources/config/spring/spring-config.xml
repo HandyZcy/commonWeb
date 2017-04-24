@@ -12,6 +12,8 @@
 		http://www.springframework.org/schema/aop/spring-aop.xsd"
 	>
 	
+	<description> Spring 的主配置文件，其它配置文件通过 《import》 标签引用到本文件，方便管理和引用</description>
+	
 	<!-- 加载管理Spring上下文持有器 -->
 	<bean class="com.system.utils.SpringContextHolder" lazy-init="false"/>
 	
@@ -37,8 +39,8 @@
 	<import resource="classpath:/config/spring/spring-config-tx.xml" />
  	<import resource="classpath:/config/spring/spring-config-task.xml" /> 
  	<import resource="classpath:/config/spring/redis-context.xml"/>
- 	
  	<import resource="classpath:/config/spring/spring-config-shiro.xml" /> 
+ 	
 	<!-- 
 	<import resource="classpath:/config/spring/spring-config-ehcache.xml" /> 
 	<import resource="classpath:/config/spring/spring-config-beetl.xml" /> 
