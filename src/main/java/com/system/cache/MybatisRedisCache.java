@@ -26,7 +26,7 @@ public class MybatisRedisCache implements Cache {
 	
 	private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock(true);
 	
-	private RedisTemplate<Serializable, Serializable> redisTemplate = SpringContextHolder.getBean("redisTemplate"); ; 
+	private RedisTemplate<Serializable, Serializable> redisTemplate = SpringContextHolder.getBean("redisTemplate"); 
 	
 	private String id;
 	
