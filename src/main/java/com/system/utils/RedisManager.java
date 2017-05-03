@@ -20,7 +20,7 @@ public class RedisManager {
 	/**
 	 * 过期时间
 	 */
-	private Long expire;
+//	private Long expire;
 	
 	/**
 	 * 添加缓存数据（给定key已存在，进行覆盖）
@@ -131,4 +131,5 @@ public class RedisManager {
 		
 		return bytesSet;
 	}
+	
 }
