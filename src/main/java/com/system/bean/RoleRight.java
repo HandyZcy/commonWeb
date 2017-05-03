@@ -1,5 +1,6 @@
 package com.system.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,8 +9,12 @@ import java.util.Date;
  * @author Handy
  * @date 2016年5月31日上午9:38:40
  */
-public class RoleRight {
+public class RoleRight implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer roleId;
 	private Integer rightId;

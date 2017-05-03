@@ -88,18 +88,6 @@ INSERT INTO `sys_right` VALUES ('10', '分配权限', '', 'superman:role:authori
 INSERT INTO `sys_right` VALUES ('11', '添加管理员', '', 'superman:manager:add', '6', '2', '1', '1', '2016-07-05 11:44:02', '2016-07-05 11:44:02');
 INSERT INTO `sys_right` VALUES ('12', '修改管理员', '', 'superman:manager:update', '6', '2', '2', '1', '2016-07-05 11:44:24', '2016-07-05 11:44:24');
 INSERT INTO `sys_right` VALUES ('13', '删除管理员', '', 'superman:manager:del', '6', '2', '3', '1', '2016-07-05 11:44:44', '2016-07-05 11:44:44');
-INSERT INTO `sys_right` VALUES ('30', '服务类型管理', 'serviceTypeController/getDataList?type=0', '', '29', '1', '1', '1', '2016-07-21 09:54:14', '2016-07-21 09:54:14');
-INSERT INTO `sys_right` VALUES ('31', '商户信息管理', 'shopController/findShopList', '', '29', '1', '2', '1', '2016-07-21 16:19:20', '2016-07-22 17:02:22');
-INSERT INTO `sys_right` VALUES ('33', '会员卡交易订单', 'shopBillController/getShopBillList', '', '32', '1', '1', '1', '2016-07-24 15:20:24', '2016-07-24 15:20:24');
-INSERT INTO `sys_right` VALUES ('35', '空卡管理', 'cardController/getBlankCardList', '', '48', '1', '1', '1', '2016-07-25 15:27:26', '2016-09-18 15:32:01');
-INSERT INTO `sys_right` VALUES ('38', '买家管理', '', '', '37', '0', '1', '1', '2016-07-28 17:54:04', '2016-07-28 17:54:04');
-INSERT INTO `sys_right` VALUES ('39', '绑卡买家管理', 'accountController/getTieBuyerListPage', '', '38', '1', '1', '1', '2016-07-28 17:55:14', '2016-07-28 17:55:14');
-INSERT INTO `sys_right` VALUES ('40', '未绑卡买家管理', 'accountController/getNoTieBuyerListPage', '', '38', '1', '2', '1', '2016-07-30 16:28:38', '2016-07-30 16:29:42');
-INSERT INTO `sys_right` VALUES ('41', '卖家管理', 'sellerManageController/getSellerList', '', '37', '1', '2', '1', '2016-07-30 18:39:59', '2016-07-30 18:40:42');
-INSERT INTO `sys_right` VALUES ('46', '交易统计', 'statisticalController/tradingRecord', '1', '45', '1', '2', '1', '2016-09-09 14:52:27', '2017-04-14 19:06:47');
-INSERT INTO `sys_right` VALUES ('47', '对账管理', '', '', '34', '0', '2', '1', '2016-09-18 15:27:45', '2016-09-18 15:27:45');
-INSERT INTO `sys_right` VALUES ('48', '会员卡管理', '', '', '34', '0', '1', '1', '2016-09-18 15:28:07', '2016-09-18 15:28:07');
-INSERT INTO `sys_right` VALUES ('49', '交易对账', 'shopBalanceController/shopBalanceList', '', '47', '1', '1', '1', '2016-09-18 15:29:01', '2016-09-18 15:29:57');
 
 -- ----------------------------
 -- Table structure for sys_role

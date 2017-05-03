@@ -1,5 +1,6 @@
 package com.system.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -12,8 +13,12 @@ import java.util.Set;
  * @author Handy
  * @date 2016年5月25日下午2:07:34
  */
-public class Manager {
+public class Manager implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private Integer portId;

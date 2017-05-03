@@ -1,5 +1,6 @@
 package com.system.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,8 +11,12 @@ import java.util.List;
  * @author Handy
  * @date 2016年5月25日下午2:07:56
  */
-public class Role {
+public class Role implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private String description;

@@ -1,5 +1,6 @@
 package com.system.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,8 +9,12 @@ import java.util.Date;
  * @author Handy
  * @date 2016年6月1日下午12:00:23
  */
-public class ManagerRole {
+public class ManagerRole implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer managerId;
 	private Integer roleId;

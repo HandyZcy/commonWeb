@@ -1,9 +1,15 @@
 package com.system.bean;
 
+import java.io.Serializable;
+
 import com.system.utils.Constant;
 
-public class Page {
+public class Page implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int showCount; //每页显示记录数
 	private int totalPage; //总页数
 	private int totalResult; //总记录数

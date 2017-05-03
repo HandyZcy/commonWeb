@@ -14,8 +14,21 @@
 	
 	<description> Spring 的主配置文件，其它配置文件通过 《import》 标签引用到本文件，方便管理和引用</description>
 	
+	<!-- 加载外部配置文件 -->
+	<context:property-placeholder location="classpath:/config/properties/*"/>
+
+	<!-- 启用注解 -->
+	<!-- 
+	<context:annotation-config/>
+	 -->
+	
+	<!-- 启用aop注解 -->
+	<!-- 
+	<aop:aspectj-autoproxy expose-proxy="true"/>
+	 -->
+	
 	<!-- 加载管理Spring上下文持有器 -->
-	<bean class="com.system.utils.SpringContextHolder" lazy-init="false"/>
+	<bean class="com.system.utils.SpringContextHolder" />
 	
 	<!-- 扫描的包路径 去掉mvc的注解 -->
 	<context:component-scan base-package="com.system">
@@ -23,25 +36,14 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
-	<!-- 启用注解 -->
-	<!-- 
-	<context:annotation-config/>
-	 -->
-	
-	<!-- 加载外部配置文件 -->
-	<context:property-placeholder location="classpath:/config/properties/*"/>
-	
-	<!-- 启用aop注解 -->
-	<aop:aspectj-autoproxy expose-proxy="true"/>
-	
-	<import resource="classpath:/config/spring/spring-config-datasource.xml" /> 
-	<import resource="classpath:/config/spring/spring-config-mybatis.xml" /> 
-	<import resource="classpath:/config/spring/spring-config-tx.xml" />
- 	<import resource="classpath:/config/spring/spring-config-task.xml" /> 
  	<import resource="classpath:/config/spring/redis-context.xml"/>
+	<import resource="classpath:/config/spring/spring-config-datasource.xml" /> 
+	<import resource="classpath:/config/spring/spring-config-tx.xml" />
+	<import resource="classpath:/config/spring/spring-config-mybatis.xml" /> 
  	<import resource="classpath:/config/spring/spring-config-shiro.xml" /> 
  	
 	<!-- 
+ 	<import resource="classpath:/config/spring/spring-config-task.xml" /> 
 	<import resource="classpath:/config/spring/spring-config-ehcache.xml" /> 
 	<import resource="classpath:/config/spring/spring-config-beetl.xml" /> 
 	<import resource="classpath:/config/spring/spring-config-monitor.xml" /> 
