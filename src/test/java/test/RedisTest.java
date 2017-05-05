@@ -27,7 +27,7 @@ public class RedisTest extends BaseJunitTest{
 				return connection.dbSize();
 			}
 		});
-		System.out.println(dbSize);
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++="+dbSize);
 		Set<Serializable> keySet = redisTemplate.keys("*");
 		Iterator<Serializable> iterator = keySet.iterator();
 		while (iterator.hasNext()) {
