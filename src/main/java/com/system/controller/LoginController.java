@@ -1,8 +1,10 @@
 package com.system.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -129,6 +131,23 @@ public class LoginController extends BaseController{
 		TreeUtil treeUtil = new TreeUtil();
 		List<Right> menuList = treeUtil.getChildRights(rightList, 1);
 		return menuList;
+	}
+	
+	@RequestMapping("/logout")
+	public void logout(HttpServletResponse response){
+	    Subject subject = SecurityUtils.getSubject();
+	    if (subject.isAuthenticated())
+        {
+	        subject.logout();
+        }
+	    try
+        {
+            response.sendRedirect("index.jsp");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 	}
 	
 }
