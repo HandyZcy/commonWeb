@@ -33,7 +33,7 @@
 								<li><a id="update-adminuser-btn2" href="javascript:void(0)">修改信息</a></li>
 								<li><a href="http://www.lazycard.cn" target="blank">联系我们</a></li>
 								<li class="divider"></li>
-								<li><a href="${path}/admin/logout.shtml">安全退出</a></li>
+								<li><a href="${path}/logout.shtml">安全退出</a></li>
 							</ul>
                         </div>
                         <div class="logo-element">CM
@@ -94,13 +94,13 @@
                         </li>
                     </ul>
                 </div>
-                <a href="<%=path%>/admin/logout.shtml" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                <a href="${path}/logout.shtml" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" id= "content-row" width="100%" height="100%" src="" frameborder="0" data-id="" seamless></iframe>
             </div>
             <div class="footer">
-                <div class="pull-right">&copy; 2017-2020 <a href="http://www.baidu.com" target="_blank">懒人用卡项目组</a>
+                <div class="pull-right">&copy; 2017-2020 <a href="http://www.baidu.com" target="_blank">HandyZcy${path}【${sessionId}】${mobile}</a>
                 </div>
             </div>
         </div>
