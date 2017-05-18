@@ -70,70 +70,6 @@ public class RedisLock{
     }
 
     /**
-     * @return lock key
-     */
-    public String getLockKey() {
-        return lockKey;
-    }
-
-    private String get(final String key) {
-        Object obj = null;
-        try {
-            obj = redisTemplate.execute(new RedisCallback<Object>() {
-                @Override
-                public Object doInRedis(RedisConnection connection) throws DataAccessException {
-                    StringRedisSerializer serializer = new StringRedisSerializer();
-                    byte[] data = connection.get(serializer.serialize(key));
-                    connection.close();
-                    if (data == null) {
-                        return null;
-                    }
-                    return serializer.deserialize(data);
-                }
-            });
-        } catch (Exception e) {
-            logger.error("get redis error, key : {}", key);
-        }
-        return obj != null ? obj.toString() : null;
-    }
-
-    private boolean setNX(final String key, final String value) {
-        Object obj = null;
-        try {
-            obj = redisTemplate.execute(new RedisCallback<Object>() {
-                @Override
-                public Object doInRedis(RedisConnection connection) throws DataAccessException {
-                    StringRedisSerializer serializer = new StringRedisSerializer();
-                    Boolean success = connection.setNX(serializer.serialize(key), serializer.serialize(value));
-                    connection.close();
-                    return success;
-                }
-            });
-        } catch (Exception e) {
-            logger.error("setNX redis error, key : {}", key);
-        }
-        return obj != null ? (Boolean) obj : false;
-    }
-
-    private String getSet(final String key, final String value) {
-        Object obj = null;
-        try {
-            obj = redisTemplate.execute(new RedisCallback<Object>() {
-                @Override
-                public Object doInRedis(RedisConnection connection) throws DataAccessException {
-                    StringRedisSerializer serializer = new StringRedisSerializer();
-                    byte[] ret = connection.getSet(serializer.serialize(key), serializer.serialize(value));
-                    connection.close();
-                    return serializer.deserialize(ret);
-                }
-            });
-        } catch (Exception e) {
-            logger.error("setNX redis error, key : {}", key);
-        }
-        return obj != null ? (String) obj : null;
-    }
-
-    /**
      * 获得 lock.
      * 实现思路: 主要是使用了redis 的setnx命令,缓存了锁.
      * reids缓存的key是锁的key,所有的共享, value是锁的到期时间(注意:这里把过期时间放在value了,没有时间上设置其超时时间)
@@ -196,5 +132,69 @@ public class RedisLock{
         }
     }
 
+    
+    /**
+     * @return lock key
+     */
+    public String getLockKey() {
+        return lockKey;
+    }
+
+    private String get(final String key) {
+        Object obj = null;
+        try {
+            obj = redisTemplate.execute(new RedisCallback<Object>() {
+                @Override
+                public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                    StringRedisSerializer serializer = new StringRedisSerializer();
+                    byte[] data = connection.get(serializer.serialize(key));
+                    connection.close();
+                    if (data == null) {
+                        return null;
+                    }
+                    return serializer.deserialize(data);
+                }
+            });
+        } catch (Exception e) {
+            logger.error("get redis error, key : {}", key);
+        }
+        return obj != null ? obj.toString() : null;
+    }
+
+    private boolean setNX(final String key, final String value) {
+        Object obj = null;
+        try {
+            obj = redisTemplate.execute(new RedisCallback<Object>() {
+                @Override
+                public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                    StringRedisSerializer serializer = new StringRedisSerializer();
+                    Boolean success = connection.setNX(serializer.serialize(key), serializer.serialize(value));
+                    connection.close();
+                    return success;
+                }
+            });
+        } catch (Exception e) {
+            logger.error("setNX redis error, key : {}", key);
+        }
+        return obj != null ? (Boolean) obj : false;
+    }
+
+    private String getSet(final String key, final String value) {
+        Object obj = null;
+        try {
+            obj = redisTemplate.execute(new RedisCallback<Object>() {
+                @Override
+                public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                    StringRedisSerializer serializer = new StringRedisSerializer();
+                    byte[] ret = connection.getSet(serializer.serialize(key), serializer.serialize(value));
+                    connection.close();
+                    return serializer.deserialize(ret);
+                }
+            });
+        } catch (Exception e) {
+            logger.error("setNX redis error, key : {}", key);
+        }
+        return obj != null ? (String) obj : null;
+    }
 
 }
