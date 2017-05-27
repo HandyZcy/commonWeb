@@ -111,9 +111,13 @@
 				/statics/** = anon 
 				/common/** = anon 
 				/error/** = anon 
+				
 				<!-- 登录资源放行 -->
 				/toLogin/** = anon
 				/login/** = anon
+				
+				<!-- shiro 自带登出 -->
+				/logout = logout
 				
 				<!-- 表示用户必需已通过认证，并拥有 superman 角色 && superman:role:list 权限才可以正常发起'/role'请求-->
 				/role/** = authc,roles[superman],perms[superman:role:list]
