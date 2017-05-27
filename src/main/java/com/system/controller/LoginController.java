@@ -133,7 +133,7 @@ public class LoginController extends BaseController{
 		return menuList;
 	}
 	
-	@RequestMapping("/logout")
+//	@RequestMapping("/logout")
 	public void logout(HttpServletResponse response){
 	    Subject subject = SecurityUtils.getSubject();
 	    if (subject.isAuthenticated())
