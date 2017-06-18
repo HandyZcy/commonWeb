@@ -279,11 +279,14 @@
 			<artifactId>json</artifactId>
 			<version>20160212</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/cn.songxinqiang/com.baidu.ueditor -->
 		<dependency>
-			<groupId>com.baidu</groupId>
-			<artifactId>ueditor</artifactId>
-			<version>1.1.2</version>
+		    <groupId>cn.songxinqiang</groupId>
+		    <artifactId>com.baidu.ueditor</artifactId>
+		    <version>1.1.2-offical</version>
 		</dependency>
+
 		
   </dependencies>
   
